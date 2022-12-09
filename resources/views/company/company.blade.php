@@ -16,12 +16,13 @@
 <link href="css/theme.css" rel="stylesheet" media="all">
 <link href="{{asset('admin_assets/css/theme.css')}}" rel="stylesheet" media="all">
 
+
 </head>
 
 <body>
     			
 	    		
-                
+                <p>description</p>
 {{--                 
                 <div class="container-fluid">
                   <div class="row"> --}}
