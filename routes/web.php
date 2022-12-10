@@ -25,6 +25,12 @@ Route::group(['middleware'=>'admin_auth'],function(){
     Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 
     Route::get('/employee',[EmployeeController::class,'employee'])->name('employee');
+    Route::post('addemployee',[EmployeeController::class,'create'])->name('addemployee');
+    Route::get('/employeeedit/{id}',[EmployeeController::class,'edit']);
+    Route::post('updateemployee',[EmployeeController::class,'update'])->name('updateemployee');
+    Route::get('/deletedata2/{id}',[EmployeeController::class,'destroy']);
+    Route::get('employeeadd',[EmployeeController::class,'index'])->name('employeeadd');
+
     Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
 
 

@@ -19,7 +19,7 @@ class CompanyController extends Controller
 
 
     public function company(){
-        $data=Company::all();
+        $data=Company::paginate(2);
         return view('company.company',['data'=>$data]);
 
     }
@@ -115,7 +115,7 @@ class CompanyController extends Controller
         
             }
           $data->website=$req->website;
-        $data->save();
+        $data->update();
         
         return redirect('company')->with('success', 'Data updated');
         }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Company;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -13,11 +16,22 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function employee(){
-        return view("employee.employee");
+        // $employees = Employee::with('company')->get();
+
+        // $companies = Company::with('employee')->get();
+        $data=Employee::paginate(10);
+        return view('employee.employee',['data'=>$data]);
+
+        // return view('employee.employee', compact('employees', 'companies'));
     }
+ 
+
     public function index()
     {
         //
+        
+        $q=Company::all();
+        return view('employee.addemployee',['q'=>$q]);
     }
 
     /**
@@ -25,10 +39,25 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $req)
     {
-        //
+        //        
+    
+        $req->validate([
+            'fname'=>'required',
+            'lname'=>'required',
+               
+        ]);
+        $employee=new Employee();
+        $employee->fname=$req->fname;
+        $employee->lname=$req->lname;
+        $employee->company=$req->company;
+        $employee->email=$req->email;
+        $employee->phone=$req->contact;
+        $employee->save();
+        return back();
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -58,9 +87,12 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
         //
+        $data=Employee::find($id); 
+      $q=Company::all();
+        return view("employee.editemployee",['data'=>$data,'q'=>$q]);
     }
 
     /**
@@ -70,9 +102,19 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $req)
     {
         //
+        $data=Employee::find($req->id); 
+       
+        $data->fname=$req->fname;
+        $data->lname=$req->lname;
+        $data->company=$req->company;
+        $data->email=$req->email;
+        $data->phone=$req->contact;
+        $data->update();
+        
+        return redirect('employee')->with('success', 'Data updated');
     }
 
     /**
@@ -81,8 +123,12 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
         //
+        $data=Employee::find($id);
+     $data->delete();
+    // DB::delete('delete from users where id=?',[$id]);
+    return back();
     }
 }
