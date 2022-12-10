@@ -17,6 +17,14 @@
     			
 	    				<a class="nav-link" href="{{route('logout')}}">Logout</a>
 	    		@include('common/common')
-        hi hello
+          <div class="container " style="padding-left:400px; padding-top:130px;">
+          
+          
+                  <div class="row">
+                      <div class="col-md-12" >
+                       <h1> Dashboard page</h1>
+                      </div>
+                  </div>
+          </div>
 </body>
 </html>

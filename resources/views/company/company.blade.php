@@ -12,7 +12,9 @@
     <link href="{{asset('admin_assets/css/theme.css')}}" rel="stylesheet" media="all">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/solid.min.css">
   <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-<!-- Main CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- Main CSS-->
 <link href="css/theme.css" rel="stylesheet" media="all">
 <link href="{{asset('admin_assets/css/theme.css')}}" rel="stylesheet" media="all">
 
@@ -87,8 +89,17 @@
                         </table>
                       </div>
           
+                    </div>
                   </div>
-                </div>
+                        <span>
+                          {{ $data->links() }}
+                        </span>
+                        <style>
+                          .w-10{
+                            display:none
+                          }
+                          </style>
+                     
                 
                                 
                 <script type="text/javascript" src="./js/admin.js"></script>
