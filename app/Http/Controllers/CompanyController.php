@@ -19,7 +19,7 @@ class CompanyController extends Controller
 
 
     public function company(){
-        $data=Company::paginate(2);
+        $data=Company::paginate(10);
         return view('company.company',['data'=>$data]);
 
     }
